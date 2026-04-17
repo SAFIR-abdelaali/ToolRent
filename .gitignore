@@ -32,3 +32,5 @@ Thumbs.db
 
 .docker/
 docker-compose.override.yml
+
+tools-service/uploads/

@@ -42,3 +42,16 @@ services:
       - tools-db
     volumes:
       - ./tools-service:/app
+  frontend-web:
+    build: ./frontend-web
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend-web/src:/app/src
+      - ./frontend-web/public:/app/public
+    environment:
+      - NEXT_PUBLIC_AUTH_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_TOOLS_API_URL=http://localhost:8001
+    depends_on:
+      - auth-service
+      - tools-service

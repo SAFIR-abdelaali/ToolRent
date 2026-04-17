@@ -1,0 +1,42 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: var(--bg);
+  gap: 12px;
+}
+
+.icon { font-size: 4rem; }
+
+.code {
+  font-family: var(--font-display);
+  font-size: 6rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--text);
+  line-height: 1;
+}
+
+.msg {
+  font-size: 1.1rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.back {
+  margin-top: 0.75rem;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 12px 24px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.back:hover { background: var(--accent); }
