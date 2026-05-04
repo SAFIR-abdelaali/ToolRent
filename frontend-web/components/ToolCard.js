@@ -1,30 +1,19 @@
-import Image from 'next/image';
 import styles from './ToolCard.module.css';
-
-const FALLBACK_EMOJIS = { drill: '🔨', saw: '🪚', ladder: '🪜', washer: '🌀', wrench: '🔧', grinder: '🔩' };
-const getEmoji = (title = '') => {
-  const t = title.toLowerCase();
-  return Object.entries(FALLBACK_EMOJIS).find(([k]) => t.includes(k))?.[1] || '🛠️';
-};
+import ToolImage from './ToolImage';
 
 export default function ToolCard({ tool, onClick }) {
-  const hasImage = tool.image_url && !tool.image_url.includes('dummy-cloud-storage');
-
   return (
     <article className={styles.card} onClick={() => onClick(tool)} tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && onClick(tool)}>
       <div className={styles.imgWrap}>
-        {hasImage ? (
-          <Image
-            src={tool.image_url}
-            alt={tool.title}
-            fill
-            style={{ objectFit: 'cover' }}
-            sizes="(max-width: 600px) 100vw, 300px"
-          />
-        ) : (
-          <span className={styles.emoji}>{getEmoji(tool.title)}</span>
-        )}
+        <ToolImage
+          imageUrl={tool.image_url}
+          title={tool.title}
+          className={styles.emoji}
+          fill
+          style={{ objectFit: 'cover' }}
+          sizes="(max-width: 600px) 100vw, 300px"
+        />
         <div className={styles.badge}>Available</div>
       </div>
       <div className={styles.body}>

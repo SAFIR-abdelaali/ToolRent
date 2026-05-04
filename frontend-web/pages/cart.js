@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import AuthModal from '../components/AuthModal';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import ToolImage from '../components/ToolImage';
 import styles from './cart.module.css';
-
-const getBadge = (title = '') => (title.trim()[0] || 'T').toUpperCase();
 
 export default function CartPage() {
   const { items, updateQty, removeItem, clearCart, subtotal } = useCart();
@@ -77,21 +75,17 @@ export default function CartPage() {
             <div className={styles.cartGrid}>
               <div className={styles.list}>
                 {items.map((item) => {
-                  const hasImage = item.image_url && !item.image_url.includes('dummy-cloud-storage');
                   return (
                     <div key={item.id} className={styles.item}>
                       <div className={styles.itemMedia}>
-                        {hasImage ? (
-                          <Image
-                            src={item.image_url}
-                            alt={item.title}
-                            fill
-                            sizes="120px"
-                            style={{ objectFit: 'cover' }}
-                          />
-                        ) : (
-                          <span className={styles.itemGlyph}>{getBadge(item.title)}</span>
-                        )}
+                        <ToolImage
+                          imageUrl={item.image_url}
+                          title={item.title}
+                          className={styles.itemGlyph}
+                          fill
+                          sizes="120px"
+                          style={{ objectFit: 'cover' }}
+                        />
                       </div>
                       <div className={styles.itemBody}>
                         <h3>{item.title}</h3>

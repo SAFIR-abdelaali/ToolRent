@@ -1,19 +1,12 @@
-import Image from 'next/image';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import toast from 'react-hot-toast';
 import styles from './ToolDetail.module.css';
-
-const FALLBACK_EMOJIS = { drill: '🔨', saw: '🪚', ladder: '🪜', washer: '🌀', wrench: '🔧', grinder: '🔩' };
-const getEmoji = (title = '') => {
-  const t = title.toLowerCase();
-  return Object.entries(FALLBACK_EMOJIS).find(([k]) => t.includes(k))?.[1] || '🛠️';
-};
+import ToolImage from './ToolImage';
 
 export default function ToolDetail({ tool, onClose, onAuthRequired }) {
   const { user } = useAuth();
   const { addItem, items } = useCart();
-  const hasImage = tool?.image_url && !tool.image_url.includes('dummy-cloud-storage');
   const inCart = items.some((item) => item.id === tool?.id);
 
   const handleAddToCart = () => {
@@ -33,12 +26,14 @@ export default function ToolDetail({ tool, onClose, onAuthRequired }) {
         <button className={styles.closeBtn} onClick={onClose}>← Back</button>
 
         <div className={styles.imgWrap}>
-          {hasImage ? (
-            <Image src={tool.image_url} alt={tool.title} fill style={{ objectFit: 'cover' }}
-              sizes="480px" />
-          ) : (
-            <span className={styles.emoji}>{getEmoji(tool.title)}</span>
-          )}
+          <ToolImage
+            imageUrl={tool?.image_url}
+            title={tool?.title}
+            className={styles.emoji}
+            fill
+            style={{ objectFit: 'cover' }}
+            sizes="480px"
+          />
         </div>
 
         <div className={styles.content}>
