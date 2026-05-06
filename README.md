@@ -26,15 +26,15 @@ Household tools are often "single-use" assets—a power drill is used for an ave
 ## Tech Stack
 - **Frontend Framework:** Next.js
 - **Backend Framework:** FastAPI
-- **Databases:** PostgreSQL, MongoDB
-- **Cloud Infrastructure:** AWS S3, App Engine / AWS Beanstalk
+- **Databases:** PostgreSQL
+- **Cloud Infrastructure:** Vercel for the frontend
 - **Containerization:** Docker
 - **Security:** OAuth2 + JWT
 
 ## Cloud Deployment Model
 - **Model:** Public cloud
 - **Type:** PaaS (Platform as a Service)
-- **Justification:** We leveraged PaaS to minimize operational overhead. By using managed services (Managed DB, Object Storage), we optimized for scalability and performance while reducing the time-to-market for this MVP.
+- **Justification:** We leveraged PaaS to minimize operational overhead. The frontend is deployed on Vercel, while managed services (Managed DB, Object Storage) keep the backend scalable and reduce the time-to-market for this MVP.
 
 
 
